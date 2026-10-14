@@ -8,22 +8,24 @@ let tareas;
 //     prioridad: 'alta',
 //     estado: 'pendiente'
 // };
-try {
+try {//guardado en local
     tareas = JSON.parse(localStorage.getItem('tareasGuardadas')) || [];
 } catch {
     tareas = [];
 }
 
-function save() {
+function save() {//guardado del local
     localStorage.setItem('tareasGuardadas', JSON.stringify(tareas));
 }
 
+//llamado de pestana segun el boton
 document.querySelector("button[data-vista = 'gestorTareas']").addEventListener("click", () => { drawGestor(); });
 document.querySelector("button[data-vista = 'otro']").addEventListener("click", () => { drawOtro(); });
 
 let boton = "Guardar";
 let vista = document.querySelector("#vista");
-function drawGestor() {
+function drawGestor() {//mostrado de infotmacion
+    //formulario
     vista.innerHTML = `
     <section class="nuevaActividad">
         <h2>Nueva Actividad</h2>
@@ -71,7 +73,7 @@ function drawGestor() {
     </section>    
     `
 
-    vista.querySelector('#guardarActividad').addEventListener('click', () => {
+    vista.querySelector('#guardarActividad').addEventListener('click', () => {//boton de guardado
         const titulo = vista.querySelector('#titulo').value.trim();
         const materia = vista.querySelector('#materia').value.trim();
         const descripcion = vista.querySelector('#descripcion').value.trim();
@@ -80,6 +82,7 @@ function drawGestor() {
         const estado = vista.querySelector('#estado').value;
         let mensaje = vista.querySelector('#mensaje')
 
+        //validaciones
         if (titulo == "") {
             mensaje.textContent = "El titulo es obligatorio";
         } else if (materia == "") {
@@ -87,7 +90,7 @@ function drawGestor() {
         } else if (fecha == "") {
             mensaje.textContent = "Fecha es obligatoria";
         } else {
-            tareas.push({
+            tareas.push({//asignacion al local
                 id: tareas.length,
                 titulo,
                 materia,
@@ -98,6 +101,7 @@ function drawGestor() {
             });
             save();
 
+            //reseteo
             vista.querySelector('#titulo').value = "";
             vista.querySelector('#materia').value = "";
             vista.querySelector('#descripcion').value = "";
