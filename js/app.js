@@ -22,7 +22,7 @@ function save() {//guardado del local
 
 //llamado de pestana segun el boton
 document.querySelector("button[data-vista = 'gestorTareas']").addEventListener("click", () => { drawGestor(); });
-document.querySelector("button[data-vista = 'otro']").addEventListener("click", () => { drawOtro(); });
+//document.querySelector("button[data-vista = 'otro']").addEventListener("click", () => { drawOtro(); });
 
 let boton = "Guardar";
 let vista_nuevaAct = document.querySelector("#vista");
