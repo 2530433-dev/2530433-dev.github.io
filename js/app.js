@@ -13,6 +13,8 @@ try {//guardado en local
 } catch {
     tareas = [];
 }
+//pantalla a llamar
+let pantalla = 'gestor';
 
 function save() {//guardado del local
     localStorage.setItem('tareasGuardadas', JSON.stringify(tareas));
@@ -23,10 +25,12 @@ document.querySelector("button[data-vista = 'gestorTareas']").addEventListener("
 document.querySelector("button[data-vista = 'otro']").addEventListener("click", () => { drawOtro(); });
 
 let boton = "Guardar";
-let vista = document.querySelector("#vista");
+let vista_nuevaAct = document.querySelector("#vista");
+let vistaActividades = document.querySelector("#vistaActividades");
+let color = "";
 function drawGestor() {//mostrado de infotmacion
     //formulario
-    vista.innerHTML = `
+    vista_nuevaAct.innerHTML = `
     <section class="nuevaActividad">
         <h2>Nueva Actividad</h2>
         <label for="titulo">Titulo *</label><br>
@@ -50,9 +54,10 @@ function drawGestor() {//mostrado de infotmacion
             <option value='terminada'>Terminada</option>
         </select><br><br>
         <button id="guardarActividad">${boton}</button><br>
-        <p id='mensaje'></p>
-    </section>
+        <p id='mensaje' style="color: ${color};"><strong></strong></p>
+    </section>`
 
+    vistaActividades.innerHTML = `
     <section class="actividadesRegistradas">
         <h1>Actividades registradas</h1>
         <label for="busqueda">Buscar titulo o materia</label>
@@ -73,21 +78,31 @@ function drawGestor() {//mostrado de infotmacion
     </section>    
     `
 
-    vista.querySelector('#guardarActividad').addEventListener('click', () => {//boton de guardado
-        const titulo = vista.querySelector('#titulo').value.trim();
-        const materia = vista.querySelector('#materia').value.trim();
-        const descripcion = vista.querySelector('#descripcion').value.trim();
-        const fecha = vista.querySelector('#fecha').value;
-        const prioridad = vista.querySelector('#prioridad').value;
-        const estado = vista.querySelector('#estado').value;
+    let buscar = document.querySelector("#busqueda").value.toLowerCase();
+    lista = vistaActividades.querySelector("#lista");
+    lista.replceChildren();
+
+
+
+    vista_nuevaAct.querySelector('#guardarActividad').addEventListener('click', () => {//boton de guardado
+        pantalla = 'gestor'
+        let titulo = vista.querySelector('#titulo').value.trim();
+        let materia = vista.querySelector('#materia').value.trim();
+        let descripcion = vista.querySelector('#descripcion').value.trim();
+        let fecha = vista.querySelector('#fecha').value;
+        let prioridad = vista.querySelector('#prioridad').value;
+        let estado = vista.querySelector('#estado').value;
         let mensaje = vista.querySelector('#mensaje')
 
         //validaciones
         if (titulo == "") {
+            color = "red";
             mensaje.textContent = "El titulo es obligatorio";
         } else if (materia == "") {
+            color = "red";
             mensaje.textContent = "La materia es obligatoria";
         } else if (fecha == "") {
+            color = "red";
             mensaje.textContent = "Fecha es obligatoria";
         } else {
             tareas.push({//asignacion al local
@@ -102,10 +117,10 @@ function drawGestor() {//mostrado de infotmacion
             save();
 
             //reseteo
-            vista.querySelector('#titulo').value = "";
-            vista.querySelector('#materia').value = "";
-            vista.querySelector('#descripcion').value = "";
-            vista.querySelector('#fecha').value = "";
+            vista_nuevaAct.querySelector('#titulo').value = "";
+            vista_nuevaAct.querySelector('#materia').value = "";
+            vista_nuevaAct.querySelector('#descripcion').value = "";
+            vista_nuevaAct.querySelector('#fecha').value = "";
             mensaje.textContent = "Actividad guardada";
         }
     });
@@ -114,4 +129,8 @@ function drawGestor() {//mostrado de infotmacion
 function drawOtro() {
     vista.innerHTML = `
     `
+}
+
+if(pantalla == 'gestor'){
+    drawGestor()
 }
