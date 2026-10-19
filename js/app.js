@@ -89,51 +89,6 @@ function drawGestor() {//mostrado de infotmacion
     //Mostrado
     lista = document.querySelector("#lista");
 
-    // ["pendiente", "proceso", "terminado"].forEach((estado) =>
-    //     document.querySelector("#lista").replaceChildren()
-    // );
-
-    // tareas.forEach((tarjeta, indice) => {
-    //     let contenedor = vista_nuevaAct.querySelector(`#${tarjeta.estado}`);
-    //     let elemento = document.createElement("article");
-    //     elemento.className = "tarjeta";
-    //     elemento.innerHTML =
-    //         "<span></span><br><button>Avanzar</button><button>Retroceder</button><button>Editar</button><button>Eliminar</button>";
-    //     elemento.querySelector("span").textContent = tarjeta.titulo;
-    //     //avanza a la siuiente columna
-    //     elemento.querySelectorAll("button")[0].addEventListener("click", () => {
-    //         let estados = ["pendiente", "proceso", "terminado"];
-    //         tarjeta.estado =
-    //             estados[Math.min(estados.indexOf(tarjeta.estado) + 1, 2)];
-    //         save();
-    //         drawGestor();
-    //     });
-
-    //     //retrocede
-    //     elemento.querySelectorAll("button")[1].addEventListener("click", () => {
-    //         let estados = ["pendiente", "proceso", "terminado"];
-    //         tarjeta.estado =
-    //             estados[Math.max(estados.indexOf(tarjeta.estado) - 1, 0)];
-    //         save();
-    //         drawGestor();
-    //     });
-
-    //     //edtar
-    //     elemento.querySelectorAll("button")[2].addEventListener("click", () => {
-    //         tarjeta.titulo = prompt("Nuevo titulo");
-    //         save();
-    //         drawGestor();
-    //     });
-    //     //elimina
-    //     elemento.querySelectorAll("button")[3].addEventListener("click", () => {
-    //         tareas.splice(indice, 1);
-    //         save();
-    //         drawGestor();
-    //     });
-    //     contenedor.append(elemento);
-    // });
-
-
 
     vista_nuevaAct.querySelector('#guardarActividad').addEventListener('click', () => {//boton de guardado
         pantalla = 'gestor'
@@ -265,11 +220,6 @@ function renderLista() {
 
         contenedorLista.appendChild(elemento);
     });
-}
-
-function drawOtro() {
-    vista.innerHTML = `
-    `
 }
 
 if(pantalla == 'gestor'){
