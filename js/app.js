@@ -27,6 +27,7 @@ document.querySelector("button[data-vista = 'gestorTareas']").addEventListener("
 let boton = "Guardar";
 let vista_nuevaAct = document.querySelector("#vista");
 let vistaActividades = document.querySelector("#vistaActividades");
+let vistaLista = document.querySelector("#lista");
 let color = "";
 function drawGestor() {//mostrado de infotmacion
     //formulario
@@ -54,7 +55,7 @@ function drawGestor() {//mostrado de infotmacion
             <option value='terminada'>Terminada</option>
         </select><br><br>
         <button id="guardarActividad">${boton}</button><br>
-        <p id='mensaje' style="color: ${color};"><strong></strong></p>
+        <p id='mensaje'><strong></strong></p>
     </section>`
 
     vistaActividades.innerHTML = `
@@ -67,7 +68,7 @@ function drawGestor() {//mostrado de infotmacion
             <option value='todos'>Todos</option>
             <option value='pendiente'>Pendiente</option>
             <option value='proceso'>En proceso</option>
-            <option value='terminada'>Terminada</option>
+            <option value='terminado'>Terminada</option>
         </select>
         <label for="prioridad">Prioridad</label>
         <select>
@@ -78,9 +79,57 @@ function drawGestor() {//mostrado de infotmacion
     </section>    
     `
 
+    vistaLista.innerHTML = ``
+
+    //filtrado
     let buscar = document.querySelector("#busqueda").value.toLowerCase();
-    lista = vistaActividades.querySelector("#lista");
-    lista.replceChildren();
+
+    //Mostrado
+    lista = document.querySelector("#lista");
+
+    // ["pendiente", "proceso", "terminado"].forEach((estado) =>
+    //     document.querySelector("#lista").replaceChildren()
+    // );
+
+    // tareas.forEach((tarjeta, indice) => {
+    //     let contenedor = vista_nuevaAct.querySelector(`#${tarjeta.estado}`);
+    //     let elemento = document.createElement("article");
+    //     elemento.className = "tarjeta";
+    //     elemento.innerHTML =
+    //         "<span></span><br><button>Avanzar</button><button>Retroceder</button><button>Editar</button><button>Eliminar</button>";
+    //     elemento.querySelector("span").textContent = tarjeta.titulo;
+    //     //avanza a la siuiente columna
+    //     elemento.querySelectorAll("button")[0].addEventListener("click", () => {
+    //         let estados = ["pendiente", "proceso", "terminado"];
+    //         tarjeta.estado =
+    //             estados[Math.min(estados.indexOf(tarjeta.estado) + 1, 2)];
+    //         save();
+    //         drawGestor();
+    //     });
+
+    //     //retrocede
+    //     elemento.querySelectorAll("button")[1].addEventListener("click", () => {
+    //         let estados = ["pendiente", "proceso", "terminado"];
+    //         tarjeta.estado =
+    //             estados[Math.max(estados.indexOf(tarjeta.estado) - 1, 0)];
+    //         save();
+    //         drawGestor();
+    //     });
+
+    //     //edtar
+    //     elemento.querySelectorAll("button")[2].addEventListener("click", () => {
+    //         tarjeta.titulo = prompt("Nuevo titulo");
+    //         save();
+    //         drawGestor();
+    //     });
+    //     //elimina
+    //     elemento.querySelectorAll("button")[3].addEventListener("click", () => {
+    //         tareas.splice(indice, 1);
+    //         save();
+    //         drawGestor();
+    //     });
+    //     contenedor.append(elemento);
+    // });
 
 
 
@@ -96,13 +145,13 @@ function drawGestor() {//mostrado de infotmacion
 
         //validaciones
         if (titulo == "") {
-            color = "red";
+            mensaje.style.color = "red";
             mensaje.textContent = "El titulo es obligatorio";
         } else if (materia == "") {
-            color = "red";
+            mensaje.style.color = "red";
             mensaje.textContent = "La materia es obligatoria";
         } else if (fecha == "") {
-            color = "red";
+            mensaje.style.color = "red";
             mensaje.textContent = "Fecha es obligatoria";
         } else {
             tareas.push({//asignacion al local
@@ -121,6 +170,7 @@ function drawGestor() {//mostrado de infotmacion
             vista_nuevaAct.querySelector('#materia').value = "";
             vista_nuevaAct.querySelector('#descripcion').value = "";
             vista_nuevaAct.querySelector('#fecha').value = "";
+            mensaje.style.color = "black";
             mensaje.textContent = "Actividad guardada";
         }
     });
