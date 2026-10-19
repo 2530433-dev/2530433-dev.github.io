@@ -267,6 +267,11 @@ function renderLista() {
     });
 }
 
+function drawOtro() {
+    vista.innerHTML = `
+    `
+}
+
 if(pantalla == 'gestor'){
     drawGestor()
 }
