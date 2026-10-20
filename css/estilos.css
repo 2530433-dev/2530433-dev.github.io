@@ -4,6 +4,20 @@
     background-color: #f1f5f9;
 }
 
+.tablero {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 22px;
+}
+
+.tablero>div {
+    min-height: 220px;
+    padding: 14px;
+    border-radius: 10px;
+    background: #eaf2ff;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -61,17 +75,23 @@ section {
 }
 
 /* Columna Izquierda: Formulario Nueva Actividad */
-#vista, .nuevaActividad {
+#vista {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    flex: 1;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+.nuevaActividad {
     flex: 0 0 360px;
 }
 
-.nuevaActividad h2, 
-.actividadesRegistradas h1 {
-    margin-top: 0;
-    margin-bottom: 20px;
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #0f172a;
+.actividadesRegistradas {
+    flex: 1;
 }
 
 /* Formularios y Campos */
@@ -93,6 +113,11 @@ input, select {
     background-color: #ffffff;
     outline: none;
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.eyebrow {
+    color: #2563eb;
+    font-weight: 800;
 }
 
 input:focus, select:focus {
@@ -131,7 +156,7 @@ input:focus, select:focus {
 }
 
 /* Columna Derecha: Actividades Registradas */
-#vistaActividades, .actividadesRegistradas {
+#vista, .actividadesRegistradas {
     flex: 1;
 }
 

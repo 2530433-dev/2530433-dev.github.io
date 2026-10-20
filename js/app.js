@@ -13,15 +13,25 @@ try {//guardado en local
 } catch {
     tareas = [];
 }
-//pantalla a llamar
-let pantalla = 'gestor';
+//pantallas a llamar
+let pantalla = localStorage.getItem('pantallaActual') || 'gestor';
+
+function cambiarPantalla(nombre) {
+    pantalla = nombre;
+    localStorage.setItem('pantallaActual', nombre);
+}
 
 function save() {//guardado del local
     localStorage.setItem('tareasGuardadas', JSON.stringify(tareas));
 }
 
+
+
 //llamado de pestana segun el boton
-document.querySelector("button[data-vista = 'gestorTareas']").addEventListener("click", () => { drawGestor(); });
+document.querySelector("button[data-vista = 'gestorTareas']").addEventListener("click", () => { 
+    cambiarPantalla("gestor");
+    drawGestor();
+});
 //document.querySelector("button[data-vista = 'otro']").addEventListener("click", () => { drawOtro(); });
 
 let boton = "Guardar";
@@ -56,9 +66,8 @@ function drawGestor() {//mostrado de infotmacion
         </select><br><br>
         <button id="guardarActividad">${boton}</button><br>
         <p id='mensaje'><strong></strong></p>
-    </section>`
-
-    vistaActividades.innerHTML = `
+    </section>
+    
     <section class="actividadesRegistradas">
         <h1>Actividades registradas</h1>
         <label for="busqueda">Buscar titulo o materia</label>
@@ -82,13 +91,11 @@ function drawGestor() {//mostrado de infotmacion
     </section>
     `
 
-
     //filtrado
     let buscar = document.querySelector("#busqueda").value.toLowerCase();
 
     //Mostrado
-    lista = document.querySelector("#lista");
-
+    lista = vista_nuevaAct.querySelector("#lista");
 
     vista_nuevaAct.querySelector('#guardarActividad').addEventListener('click', () => {//boton de guardado
         pantalla = 'gestor'
@@ -222,6 +229,4 @@ function renderLista() {
     });
 }
 
-if(pantalla == 'gestor'){
-    drawGestor()
-}
+if(pantalla == "gestor") drawGestor();
