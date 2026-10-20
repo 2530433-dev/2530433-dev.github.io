@@ -1,0 +1,228 @@
+:root {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    color: #1e293b;
+    background-color: #f1f5f9;
+}
+
+.tablero {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 22px;
+}
+
+.tablero>div {
+    min-height: 220px;
+    padding: 14px;
+    border-radius: 10px;
+    background: #eaf2ff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 24px;
+}
+
+/* Navegación superior */
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+nav button {
+    background-color: #ffffff;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+nav button:hover {
+    background-color: #f8fafc;
+    border-color: #94a3b8;
+}
+
+/* Contenedor principal de 2 columnas */
+.panel {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    max-width: 1280px;
+    margin: 0 auto;
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+}
+
+/* Secciones (Tarjetas contenedor) */
+section {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    margin: 0;
+}
+
+/* Columna Izquierda: Formulario Nueva Actividad */
+#vista {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    flex: 1;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+.nuevaActividad {
+    flex: 0 0 360px;
+}
+
+.actividadesRegistradas {
+    flex: 1;
+}
+
+/* Formularios y Campos */
+label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 6px;
+}
+
+input, select {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: #0f172a;
+    background-color: #ffffff;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.eyebrow {
+    color: #2563eb;
+    font-weight: 800;
+}
+
+input:focus, select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Fila para selectores de Prioridad y Estado */
+.nuevaActividad label[for="prioridad"],
+.nuevaActividad label[for="estado"] {
+    display: inline-block;
+    width: 48%;
+}
+
+.nuevaActividad select {
+    margin-bottom: 16px;
+}
+
+/* Botón Guardar */
+#guardarActividad {
+    width: 100%;
+    padding: 10px 16px;
+    background-color: #2563eb;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 8px;
+}
+
+#guardarActividad:hover {
+    background-color: #1d4ed8;
+}
+
+/* Columna Derecha: Actividades Registradas */
+#vista, .actividadesRegistradas {
+    flex: 1;
+}
+
+/* Filtros horizontales */
+.actividadesRegistradas {
+    display: flex;
+    flex-direction: column;
+}
+
+.actividadesRegistradas .filtros-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+/* Tarjeta individual de Actividad en la lista */
+.tarjeta-actividad {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 12px;
+    background-color: #ffffff;
+}
+
+.tarjeta-actividad h3 {
+    margin: 0 0 6px 0;
+    font-size: 1rem;
+    color: #1e293b;
+}
+
+.tarjeta-actividad p {
+    margin: 4px 0;
+    font-size: 0.875rem;
+    color: #64748b;
+}
+
+/* Botones de Acción (Editar / Eliminar) */
+.acciones-tarjeta {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.btn-editar {
+    background-color: #e2e8f0;
+    color: #334155;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.btn-eliminar {
+    background-color: #ef4444;
+    color: #ffffff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.btn-eliminar:hover {
+    background-color: #dc2626;
+}
