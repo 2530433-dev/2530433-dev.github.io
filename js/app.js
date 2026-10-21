@@ -97,6 +97,9 @@ function drawGestor() {//mostrado de infotmacion
     //Mostrado
     lista = vista_nuevaAct.querySelector("#lista");
 
+    //id base
+    let id = 1;
+
     vista_nuevaAct.querySelector('#guardarActividad').addEventListener('click', () => {//boton de guardado
         pantalla = 'gestor'
         let titulo = vista.querySelector('#titulo').value.trim();
@@ -118,8 +121,12 @@ function drawGestor() {//mostrado de infotmacion
             mensaje.style.color = "red";
             mensaje.textContent = "Fecha es obligatoria";
         } else {
+            
+            if(tareas.length === 0) id=1;
+            else id = Math.max(...tareas.map(a => a.id || 0)) + 1
+
             tareas.push({//asignacion al local
-                id: tareas.length,
+                id: id,
                 titulo,
                 materia,
                 descripcion,
