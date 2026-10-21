@@ -18,6 +18,46 @@
     background: #eaf2ff;
 }
 
+/* Resumen de totales (una tarjeta al lado de la otra) */
+.resumen {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.resumen_apartado {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.resumen_apartado h3 {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #475569;
+}
+
+/* El numero queda debajo del titulo y mas grande */
+.resumen_apartado span {
+    display: block;
+    margin-top: 6px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2563eb;
+}
+
+/* En pantallas chicas pasan a 2 por fila */
+@media (max-width: 700px) {
+    .resumen {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 * {
     box-sizing: border-box;
 }

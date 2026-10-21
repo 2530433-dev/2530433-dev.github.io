@@ -28,7 +28,7 @@ function save() {//guardado del local
 
 
 //llamado de pestana segun el boton
-document.querySelector("button[data-vista = 'gestorTareas']").addEventListener("click", () => { 
+document.querySelector("button[data-vista = 'gestorTareas']").addEventListener("click", () => {
     cambiarPantalla("gestor");
     drawGestor();
 });
@@ -39,6 +39,10 @@ let vista_nuevaAct = document.querySelector("#vista");
 let vistaActividades = document.querySelector("#vistaActividades");
 let vistaLista = document.querySelector("#lista");
 let color = "";
+let ttpendientes = 0;
+let ttproceso = 0;
+let tterminadas = 0;
+
 function drawGestor() {//mostrado de infotmacion
     //formulario
     vista_nuevaAct.innerHTML = `
@@ -69,6 +73,13 @@ function drawGestor() {//mostrado de infotmacion
     </section>
     
     <section class="actividadesRegistradas">
+
+        <div class="resumen">
+            <div class="resumen_apartado"><h3>Totales: <span id="tareasT"></span></h3></div>
+            <div class="resumen_apartado"><h3>Pendientes: <span id="tareasP"></span></h3></div>
+            <div class="resumen_apartado"><h3>Proceso: <span id="tareasEP"></span></h3></div>
+            <div class="resumen_apartado"><h3>Terminadas: <span id="tareasTE"></span></h3></div>
+        </div>
         <h1>Actividades registradas</h1>
         <label for="busqueda">Buscar titulo o materia</label>
         <input id='busqueda' placeholder='Buscar...'>
@@ -121,8 +132,9 @@ function drawGestor() {//mostrado de infotmacion
             mensaje.style.color = "red";
             mensaje.textContent = "Fecha es obligatoria";
         } else {
-            
-            if(tareas.length === 0) id=1;
+
+            //Asignacion de ids para que no falle
+            if (tareas.length === 0) id = 1;
             else id = Math.max(...tareas.map(a => a.id || 0)) + 1
 
             tareas.push({//asignacion al local
@@ -149,8 +161,25 @@ function drawGestor() {//mostrado de infotmacion
     document.querySelector("#filtroEstado").addEventListener("change", renderLista);
     document.querySelector("#filtroPrioridad").addEventListener("change", renderLista);
 
+    conteo();
     // muestra la lista de inicio
     renderLista();
+}
+
+//Conteo de actividades
+function conteo() {
+    ttpendientes = 0;
+    ttproceso = 0;
+    tterminadas = 0;
+    tareas.forEach(actividad => {
+        if (actividad.estado == "pendiente") ttpendientes++;
+        if (actividad.estado == "proceso") ttproceso++;
+        if (actividad.estado == "terminado") tterminadas++;
+    });
+    document.querySelector("#tareasT").textContent = tareas.length;
+    document.querySelector("#tareasP").textContent = ttpendientes;
+    document.querySelector("#tareasEP").textContent = ttproceso;
+    document.querySelector("#tareasTE").textContent = tterminadas;
 }
 
 function renderLista() {
@@ -236,4 +265,5 @@ function renderLista() {
     });
 }
 
-if(pantalla == "gestor") drawGestor();
+//Mostrado de pantalla al reiniciar
+if (pantalla == "gestor") drawGestor();
