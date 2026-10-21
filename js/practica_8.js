@@ -1,8 +1,10 @@
+//Llamado al dibujado de la vista y pantalla 
 document.querySelector("button[data-vista = 'practica8']").addEventListener("click", () => {
     drawPract8();
     cambiarPantalla("pract8")
 });
 
+//Dibujado de la practica a mostrar 
 function drawPract8() {
     vista_nuevaAct.innerHTML = `
     <section class="actividadesRegistradas">
@@ -36,7 +38,7 @@ function drawPract8() {
         estado = "inicio";
     }
 
-    //guardar
+    //Guardado en el local
     function save() {
         localStorage.setItem(clave2, JSON.stringify(estado));
         localStorage.setItem(clave, JSON.stringify(proyectos));
@@ -47,8 +49,10 @@ function drawPract8() {
     vista_nuevaAct.querySelector("button[data-vista = 'proyecto']").addEventListener("click", () => { drawProyecto(); });
     vista_nuevaAct.querySelector("button[data-vista = 'ajustes']").addEventListener("click", () => { drawAjustes(); });
 
-    //draws
+    //Draws de los data-vista
     let contenedor = vista_nuevaAct.querySelector("#app");
+
+    //Dibujado de la pantalla de inicio
     function drawInicio() {
         contenedor.innerHTML = `
     <h2><strong>Resumen</strong></h2>
@@ -57,6 +61,8 @@ function drawPract8() {
         estado = "inicio";
         save();
     }
+
+    //Dibujado de la pantalla de proyecto
     function drawProyecto() {
         contenedor.innerHTML = `
         <h2><strong>Proyectos</strong></h2>
@@ -82,6 +88,7 @@ function drawPract8() {
             });
         });
 
+        //Agregado de proyecto
         contenedor.querySelector("#agregar").addEventListener("click", () => {
             let nombreProyecto = input.value.trim();
             if (nombreProyecto !== "") {
@@ -101,10 +108,12 @@ function drawPract8() {
             }
         });
 
+        //Estado de la pantalla
         estado = "proyecto";
         save();
     }
 
+    //Dibujado de ajustes
     function drawAjustes() {
         contenedor.innerHTML = `
         <h2><strong>Ajustes</strong></h2>
@@ -119,11 +128,13 @@ function drawPract8() {
         estado = "ajustes";
         save();
     }
-    //pantallas
+
+    //Pantallas a mostrar 
     if (estado === "inicio" || estado === "") drawInicio();
     else if (estado === "proyecto") drawProyecto();
     else if (estado === "ajustes") drawAjustes();
 
 }
 
+//Dibujado de pantalla al reiniciar
 if (pantalla == "pract8") drawPract8();

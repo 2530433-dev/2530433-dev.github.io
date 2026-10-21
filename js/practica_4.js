@@ -3,6 +3,7 @@ document.querySelector("button[data-vista = 'practica4']").addEventListener("cli
     cambiarPantalla("pract4")
 });
 
+//Dibujado de la practica
 function drawPract4() {
     vista_nuevaAct.innerHTML = `
     <section class="actividadesRegistradas">
@@ -26,6 +27,7 @@ function drawPract4() {
     </section>
     `
 
+    //Llamado de los apartados y del formulario
     const formulario = vista_nuevaAct.querySelector("#formularioConsumo");
     const nombreUsuario = vista_nuevaAct.querySelector("#nombre_usuario");
     const consumoTexto = vista_nuevaAct.querySelector("#consumo");
@@ -34,10 +36,12 @@ function drawPract4() {
     formulario.addEventListener("submit", function (event) {
         event.preventDefault();
 
+        //Variables a utilizar
         const nombre = vista_nuevaAct.querySelector("#nombre").value.trim();
         const anterior = Number(vista_nuevaAct.querySelector("#anterior").value);
         const nueva = Number(vista_nuevaAct.querySelector("#nueva").value);
 
+        //Validaciones de lecturas
         if (nueva < anterior) {
             nombreUsuario.textContent = "";
             consumoTexto.textContent = "";
@@ -45,12 +49,14 @@ function drawPract4() {
             return;
         }
 
+        //Calculo de costos
         const consumo = nueva - anterior;
         let total = 0;
         if (consumo > 250) total = consumo * 1.80;
         else if (consumo > 100) total = consumo * 1.50;
         else total = consumo * 1.20;
 
+        //Mostrado de informacion
         nombreUsuario.textContent = `Cliente: ${nombre}`;
         consumoTexto.textContent = `Consumo: ${consumo} kWh`;
         pagoTexto.textContent = `Total a pagar: $${total.toFixed(2)}`;
@@ -58,4 +64,5 @@ function drawPract4() {
 
 }
 
+//Mostrado de pantalla al reiniciar
 if (pantalla == "pract4") drawPract4();

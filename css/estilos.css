@@ -103,16 +103,26 @@ label {
     margin-bottom: 6px;
 }
 
-input, select {
+/*se excluyen radio y checkbox; se agrega textarea */
+input:not([type="radio"]):not([type="checkbox"]),
+select,
+textarea {
     width: 100%;
     padding: 9px 12px;
     border: 1px solid #cbd5e1;
     border-radius: 6px;
     font-size: 0.9rem;
+    font-family: inherit; /*el textarea ya no usa fuente monoespaciada */
     color: #0f172a;
     background-color: #ffffff;
     outline: none;
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/*el textarea solo se redimensiona hacia abajo */
+textarea {
+    resize: vertical;
+    min-height: 80px;
 }
 
 .eyebrow {
@@ -120,9 +130,35 @@ input, select {
     font-weight: 800;
 }
 
-input:focus, select:focus {
+/*mismo filtro que arriba y se agrega textarea */
+input:not([type="radio"]):not([type="checkbox"]):focus,
+select:focus,
+textarea:focus {
     border-color: #2563eb;
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* grupo de radios / checkboxes en línea */
+.opciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.opciones label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 0;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.opciones input {
+    width: auto;
+    margin: 0;
+    accent-color: #2563eb;
 }
 
 /* Fila para selectores de Prioridad y Estado */

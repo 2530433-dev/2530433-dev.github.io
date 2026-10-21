@@ -3,6 +3,7 @@ document.querySelector("button[data-vista = 'practica5']").addEventListener("cli
     cambiarPantalla("pract5")
 });
 
+//Dibujado del formulario
 function drawPract5() {
     vista_nuevaAct.innerHTML = `
     <section class="actividadesRegistradas">
@@ -46,6 +47,8 @@ function drawPract5() {
         ["pendiente", "proceso", "terminado"].forEach((estado) =>
             vista_nuevaAct.querySelector(`#${estado}`).replaceChildren()
         );
+
+        //Mostrado de las tarjetas
         tarjetas.forEach((tarjeta, indice) => {
             let contenedor = vista_nuevaAct.querySelector(`#${tarjeta.estado}`);
             let elemento = document.createElement("article");
@@ -86,6 +89,8 @@ function drawPract5() {
         }
         );
     }
+
+    //Envio y guradado de valores
     vista_nuevaAct.querySelector("#formulario").addEventListener("submit", (evento) => {
         //crea una tarjeta en la columna correspondiente
         evento.preventDefault();
@@ -97,4 +102,5 @@ function drawPract5() {
     pintar();
 }
 
+//Mostrado de pantalla al reiniciar
 if (pantalla == "pract5") drawPract5();

@@ -3,6 +3,7 @@ document.querySelector("button[data-vista = 'practica6']").addEventListener("cli
     cambiarPantalla("pract6")
 });
 
+//Dibujado de la practica
 function drawPract6() {
     vista_nuevaAct.innerHTML = `
     <body>
@@ -28,21 +29,22 @@ function drawPract6() {
     </body>
     `
 
+    //Llamado de las variables/campos a utilizar
     const nombre = vista_nuevaAct.querySelector("#nombre");
     const tema = vista_nuevaAct.querySelector("#tema");
     const tamano = vista_nuevaAct.querySelector("#tamano");
     const mensaje = vista_nuevaAct.querySelector("#mensaje");
 
+    //Llamado de los botones
     const btnGuardar = vista_nuevaAct.querySelector("#btnGuardar");
     const btnEliminar = vista_nuevaAct.querySelector("#btnEliminar");
 
+    //Validaciones de las preferencias
     function aplicarPreferencias(preferencias) {
         document.body.style.backgroundColor =
             preferencias.tema === "oscuro" ? "#222" : "#fff";
-
         document.body.style.color =
             preferencias.tema === "oscuro" ? "#fff" : "#000";
-
         if (preferencias.tamano === "pequeno") {
             document.body.style.fontSize = "14px";
         } else if (preferencias.tamano === "mediano") {
@@ -52,6 +54,7 @@ function drawPract6() {
         }
     }
 
+    //Guardado de la s preferencias
     function guardarPreferencias() {
         const preferencias = {
             nombre: nombre.value.trim(),
@@ -68,6 +71,7 @@ function drawPract6() {
         mensaje.textContent = "Preferencias guardadas correctamente.";
     }
 
+    //Mostrado de las preferencias
     function cargarPreferencias() {
         const guardado =
             localStorage.getItem("preferenciasUsuario");
@@ -90,6 +94,7 @@ function drawPract6() {
         }
     }
 
+    //Restablecimiento de las preferencias
     function eliminarPreferencias() {
         localStorage.removeItem("preferenciasUsuario");
 
@@ -105,10 +110,13 @@ function drawPract6() {
         mensaje.textContent = "Preferencias eliminadas.";
     }
 
+    //Evento segun el boton
     btnGuardar.addEventListener("click", guardarPreferencias);
     btnEliminar.addEventListener("click", eliminarPreferencias);
 
+    //Cagado de las preferencias
     cargarPreferencias();
 }
 
+//Mostrado de pantalla al reiniciar
 if (pantalla == "pract6") drawPract6();
