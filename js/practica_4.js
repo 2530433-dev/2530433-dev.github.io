@@ -1,7 +1,21 @@
-document.querySelector("button[data-vista = 'practica4']").addEventListener("click", () => { 
-    drawPract4(); 
+document.querySelector("button[data-vista = 'practica4']").addEventListener("click", () => {
+    drawPract4();
     cambiarPantalla("pract4")
 });
+
+let consumo;
+try {
+    consumo = JSON.parse(localStorage.getItem("consumoElectrico")) || { 
+        nombre: "N/A", consumoact: 0, pago: 0 
+    };
+} catch {
+    consumo = { nombre: "N/A", consumoact: 0, pago: 0 }
+}
+
+//guardado del localStorage
+function save() {
+    localStorage.setItem("consumoElectrico", JSON.stringify(consumo));
+}
 
 //Dibujado de la practica
 function drawPract4() {
@@ -33,6 +47,13 @@ function drawPract4() {
     const consumoTexto = vista_nuevaAct.querySelector("#consumo");
     const pagoTexto = vista_nuevaAct.querySelector("#pago");
 
+    //funcion para mostrar lo guardado
+    function mostrar() {
+        nombreUsuario.textContent = `Cliente: ${consumo.nombre}`;
+        consumoTexto.textContent = `Consumo: ${consumo.consumoact} kWh`;
+        pagoTexto.textContent = `Total a pagar: $${Number(consumo.pago).toFixed(2)}`;
+    }
+
     formulario.addEventListener("submit", function (event) {
         event.preventDefault();
 
@@ -50,18 +71,23 @@ function drawPract4() {
         }
 
         //Calculo de costos
-        const consumo = nueva - anterior;
+        const consumonuevo = nueva - anterior;
         let total = 0;
-        if (consumo > 250) total = consumo * 1.80;
-        else if (consumo > 100) total = consumo * 1.50;
-        else total = consumo * 1.20;
+        if (consumonuevo > 250) total = consumonuevo * 1.80;
+        else if (consumonuevo > 100) total = consumonuevo * 1.50;
+        else total = consumonuevo * 1.20;
 
-        //Mostrado de informacion
-        nombreUsuario.textContent = `Cliente: ${nombre}`;
-        consumoTexto.textContent = `Consumo: ${consumo} kWh`;
-        pagoTexto.textContent = `Total a pagar: $${total.toFixed(2)}`;
+        consumo = {
+            nombre: nombre, 
+            consumoact: consumonuevo,
+            pago: total
+        }
+        save(); 
+        mostrar();
     });
 
+    //Mostrado de informacion al cargar
+    mostrar();
 }
 
 //Mostrado de pantalla al reiniciar

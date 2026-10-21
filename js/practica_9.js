@@ -4,6 +4,19 @@ document.querySelector("button[data-vista = 'practica9']").addEventListener("cli
     cambiarPantalla("pract9")
 });
 
+//Creacion del LocalStorage
+let nomina;
+try {
+    nomina = JSON.parse(localStorage.getItem("nominaGuardada")) || { nombre: "N/A", horas: 0, horasextras: 0, total: 0 };
+} catch {
+    nomina = { nombre: "N/A", horas: 0, horasextras: 0, total: 0 };
+}
+
+//Guardado de localStorage
+function guardarNomina() {
+    localStorage.setItem("nominaGuardada", JSON.stringify(nomina));
+}
+
 //Dibujado de la practica a mostrar 
 function drawPract9() {
     vista_nuevaAct.innerHTML = `
@@ -33,28 +46,23 @@ function drawPract9() {
     //Obtencion de datos del formulario
     const formulario = vista_nuevaAct.querySelector("#formularionomina");
     const nombreEmpleado = vista_nuevaAct.querySelector("#nombreEmpleado");
-    const horastrabajadas = Number(vista_nuevaAct.querySelector("#horasTrabajadas"));
-    const horasExtra = Number(vista_nuevaAct.querySelector("#horasExtra"));
-    const pagoTotal = Number(vista_nuevaAct.querySelector("#totalPagado"));
+    const horasTrabajadas = vista_nuevaAct.querySelector("#horasTrabajadas");
+    const horasExtra = vista_nuevaAct.querySelector("#horasExtra");
+    const pagoTotal = vista_nuevaAct.querySelector("#totalPagado");
 
-    //Creacion del LocalStorage
-    let guardado;
-    try {
-        guardado = JSON.parse(localStorage.getItem('datosGuardados')) || [];
-    } catch {
-        guardado = [];
-    }
-
-    //Guardado de localStorage
-    function save() {
-        localStorage.setItem('datosGuardados', JSON.stringify(guardado));
+    //Mostrado de lo guardado
+    function mostrar() {
+        nombreEmpleado.textContent = `Empleado: ${nomina.nombre}`;
+        horasTrabajadas.textContent = `Horas trabajadas: ${nomina.horas}`;
+        horasExtra.textContent = `Horas extra: ${nomina.horasextras}`;
+        pagoTotal.textContent = `Total a pagar: $${Number(nomina.total).toFixed(2)}`;
     }
 
     //Funcion para el envio de datos
     formulario.addEventListener("submit", function (event) {
         event.preventDefault();
 
-        const nombre = vista_nuevaAct.querySelector("#nombre").value;
+        const nombre = vista_nuevaAct.querySelector("#nombre").value.trim();
         const horas = Number(vista_nuevaAct.querySelector("#horas").value);
         const pago = Number(vista_nuevaAct.querySelector("#pago").value);
 
@@ -68,16 +76,15 @@ function drawPract9() {
             extra = horasextras * pago;
             total = (pago * 40) + (extra * 1.5);
         } else total = pago * horas;
-        total = total.toFixed(2);
 
-        //Mostrado del resultado
-        vista_nuevaAct.querySelector("#nombreEmpleado").textContent = nombre;
-        vista_nuevaAct.querySelector("#horasTrabajadas").textContent = horas;
-        vista_nuevaAct.querySelector("#horasExtra").textContent = horasextras;
-        vista_nuevaAct.querySelector("#totalPagado").textContent = total;
-        guardado.push({ nombre, horas, horasextras, total });
-        save();
+        //Asignacion y guardado en el local
+        nomina = { nombre, horas, horasextras, total };
+        guardarNomina();
+        mostrar();
     });
+
+    //Mostrado de informacion al cargar
+    mostrar();
 }
 
 //Mostrado de pantalla al reiniciar
