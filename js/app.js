@@ -16,9 +16,26 @@ try {//guardado en local
 //pantallas a llamar
 let pantalla = localStorage.getItem('pantallaActual') || 'gestor';
 
+//cambiar autores de las practicas
+const selectorAutor = document.querySelector("#selectorAutor");
+const autor = document.querySelector("#autor");
+
+// restaura el guardado
+autor.value = localStorage.getItem('autorActual') || "";
+if (!autor.value) autor.selectedIndex = 0;
+
+// cambia el autor y recarga la página
+autor.addEventListener("change", () => {
+    localStorage.setItem('autorActual', autor.value);
+    location.reload();
+});
+
 function cambiarPantalla(nombre) {
     pantalla = nombre;
     localStorage.setItem('pantallaActual', nombre);
+
+    //lo muestra en todos menos en gestor
+    selectorAutor.hidden = (pantalla === "gestor");  
 }
 
 function save() {//guardado del local
@@ -267,3 +284,16 @@ function renderLista() {
 
 //Mostrado de pantalla al reiniciar
 if (pantalla == "gestor") drawGestor();
+
+// Mostrar u ocultar el select segun la pantalla al iniciar
+selectorAutor.hidden = (pantalla === "gestor");
+
+// Cargar las practicas de la carpeta del autor elegido
+["practica_3", "practica_4", "practica_5", "practica_6", "practica_7",
+ "practica_8", "practica_9", "practica_10", "examen_1", "examen_2"]
+.forEach(nombre => {
+    const s = document.createElement("script");
+    s.src = autor.value + nombre + ".js";
+    s.onerror = () => console.warn("No se pudo cargar " + s.src);
+    document.body.appendChild(s);
+});
