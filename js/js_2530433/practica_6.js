@@ -46,10 +46,10 @@ function drawPract6() {
 
     function aplicarPreferencias(preferencias) {
         document.body.style.backgroundColor =
-            preferencias.tema === "oscuro" ? "#222" : "#fff";
+            preferencias.tema === "oscuro" ? "#222" : "#ba0000";
 
         document.body.style.color =
-            preferencias.tema === "oscuro" ? "#fff" : "#000";
+            preferencias.tema === "oscuro" ? "#ba0000" : "#000";
 
         if (preferencias.tamano === "pequeno") {
             document.body.style.fontSize = "14px";
