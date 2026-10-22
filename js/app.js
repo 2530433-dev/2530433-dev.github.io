@@ -174,6 +174,7 @@ function drawGestor() {//mostrado de infotmacion
                 estado
             });
             save();
+            renderLista();
 
             //reseteo
             vista_nuevaAct.querySelector('#titulo').value = "";
@@ -217,6 +218,7 @@ function conteo() {
 function renderLista() {
     let contenedorLista = document.querySelector("#lista");
     if (!contenedorLista) return;
+    conteo();
     contenedorLista.innerHTML = "";
 
     let busqueda = document.querySelector("#busqueda") ? document.querySelector("#busqueda").value.toLowerCase() : "";
@@ -305,7 +307,7 @@ selectorAutor.hidden = (pantalla === "gestor");
 
 // Cargar las practicas de la carpeta del autor elegido
 ["practica_3", "practica_4", "practica_5", "practica_6", "practica_7",
- "practica_8", "practica_9", "practica_10", "examen_1", "examen_2"]
+"practica_8", "practica_9", "practica_10", "examen_1", "examen_2"]
 .forEach(nombre => {
     const s = document.createElement("script");
     s.src = autor.value + nombre + ".js";
