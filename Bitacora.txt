@@ -1,8 +1,28 @@
 Dia 1:
-Se inicio con el formulario html para la navegación de los formulario principalmente con un navigation con dos botones donde uno de ellos muestra el formulario principal.
-
-Tambien se inicializo el archivo js para la validación de los campos del html que al momento despliega el formulario principal y guarda las actividades en el LocalStorage.
+Hoy empezamos organizando todo el trabajo para el proyecto usando la tecnica de el diagrama de Grant para ver como ivamos a repartir las actividades entre los dos durante las semanas. Al revisar las instrucciones del profe se concluyo que Alfredo seria el integrante A y Gael el B. A Alfredo le toco empezar maquetando el html base en el archivo index.html, creando la estructura principal y poniendo la barra de navegacion con sus botones para ir cambiando de vista en la pagina.   
 
 Dia 2:
-Se inicio el diseño de el proyecto en el archivo CSS que fue tomado de referencia de una practica pasada y se empezó a modificar principalmente los colores del fondo principal y los section para que quede lo mas parecido al formulario que se tiene de referencia 
+Seguimos trabajando en la estructura de el HTML. El integrante A termino de hacer el formulario de la vista del gestor agregando todos los inputs necesarios como el titulo, materia, descripcion y fecha de entrega, ademas de los elementos select para escoger la prioridad de la tarea y su estado. Tambien se dejaron listos los contenedores para las estadisticas de los totales y la lista de tarjetas.   
 
+Dia 3:
+Hoy se trabajo en la captura de datos desde el archivo JS para conectar el formulario. Se creo la funcion drawGestor() para que se dibuje dinamicamente todo el formulario dentro de el section de la vista. Tambien se le metieron las validaciones para que si el usuario deja vacio el titulo, la materia o la fecha le marque un mensaje de error en color rojo y no guarde nada.   
+
+Dia 4:
+Le toco a Gael (integrante B) empezar a crear el CSS para darle diseño al proyecto. Se tomo de referencia una practica anterior que teniamos y se empezaron a cambiar los estilos, modificando el color de fondo principal, los estilos de las secciones y los paneles para que se viera un diseño mas limpio, bonito y responsivo en la pantalla.   
+
+Dia 5:
+Hoy nos enfocamos en que los datos no se borraran al reiniciar la pagina haciendo la captura en el LocalStorage. Alfredo hizo la funcion save() utilizando JSON.stringify para convertir el arreglo de tareas a texto y JSON.parse para recuperar la informacion guardada. Mientras tanto Gael estuvo revisando la parte de visualizacion de los datos guardados en el LocalStorage para que despues se pudieran editar o eliminar correctamente.   
+
+Dia 6 y 7:
+Fines de semana, segun la organizacion del plan de trabajo en el diagrama de gantt estos dias fueron de descanso y no se asignaron actividades de desarrollo.   
+
+Dia 8:
+Iniciamos la segunda semana trabajando juntos en el desarrollo y verificacion del CRUD. Nos dividimos la chamba para perfeccionar las funciones de editar datos usando los avisos del prompt, poder cambiar el estado de las tareas directo en su tarjeta con un select, la opcion de eliminar elementos del arreglo con splice() y que se actualice la lista, ademas de sincronizar los contadores de tareas pendientes, en proceso y terminadas.   
+
+Dia 9:
+Hoy ambos integrantes nos pusimos a hacer ejecucion de pruebas e identificacion de errores. Probamos meter bastantes tareas con distintos datos para corroborar que los inputs validaran bien, que el filtro por texto de titulo/materia y los filtros por estado y prioridad sirvieran sin fallas, y que el calculo de los IDs dinamicos con Math.max no diera problemas al borrar y crear cosas nuevas. 
+
+
+Dia 10:
+
+En este dia se corriegio el llamado de las practicas ya que primero se intento llamar en dos funciones diferentes en el archivo de cada practica pero debido a que se cambiaron un poco y se necesitaba hacer push, se cambio a una manera donde los integrantes tienen sus respectivas carpetas con sus practicas y basado en el select del html se mostrara la seleccionada
