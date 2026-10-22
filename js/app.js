@@ -87,6 +87,16 @@ function drawGestor() {//mostrado de infotmacion
         </select><br><br>
         <button id="guardarActividad">${boton}</button><br>
         <p id='mensaje'><strong></strong></p>
+
+        <hr>
+        <h2>Mis videos</h2>
+        <iframe id="reproductor" src="https://www.youtube.com/embed/ID_VIDEO_1" title="Video de YouTube" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        <label for="listaVideos">Elige un video</label>
+        <select id="listaVideos">
+            <option value="ID_VIDEO_1">Video 1</option>
+            <option value="ID_VIDEO_2">Video 2</option>
+            <option value="ID_VIDEO_3">Video 3</option>
+        </select>
     </section>
     
     <section class="actividadesRegistradas">
@@ -178,7 +188,12 @@ function drawGestor() {//mostrado de infotmacion
     document.querySelector("#filtroEstado").addEventListener("change", renderLista);
     document.querySelector("#filtroPrioridad").addEventListener("change", renderLista);
 
+    //Conteo de acts
     conteo();
+    //Cambio de video segun la eleccion del select
+    document.querySelector("#listaVideos").addEventListener("change", (e) => {
+        document.querySelector("#reproductor").src = `https://www.youtube.com/embed/${e.target.value}`;
+    });
     // muestra la lista de inicio
     renderLista();
 }
