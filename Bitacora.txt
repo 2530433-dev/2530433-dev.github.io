@@ -21,3 +21,8 @@ Iniciamos la segunda semana trabajando juntos en el desarrollo y verificacion de
 
 Dia 9:
 Hoy ambos integrantes nos pusimos a hacer ejecucion de pruebas e identificacion de errores. Probamos meter bastantes tareas con distintos datos para corroborar que los inputs validaran bien, que el filtro por texto de titulo/materia y los filtros por estado y prioridad sirvieran sin fallas, y que el calculo de los IDs dinamicos con Math.max no diera problemas al borrar y crear cosas nuevas. 
+
+
+Dia 10:
+
+En este dia se corriegio el llamado de las practicas ya que primero se intento llamar en dos funciones diferentes en el archivo de cada practica pero debido a que se cambiaron un poco y se necesitaba hacer push, se cambio a una manera donde los integrantes tienen sus respectivas carpetas con sus practicas y basado en el select del html se mostrara la seleccionada
