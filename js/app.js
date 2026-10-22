@@ -16,9 +16,26 @@ try {//guardado en local
 //pantallas a llamar
 let pantalla = localStorage.getItem('pantallaActual') || 'gestor';
 
+//cambiar autores de las practicas
+const selectorAutor = document.querySelector("#selectorAutor");
+const autor = document.querySelector("#autor");
+
+// restaura el guardado
+autor.value = localStorage.getItem('autorActual') || "";
+if (!autor.value) autor.selectedIndex = 0;
+
+// cambia el autor y recarga la página
+autor.addEventListener("change", () => {
+    localStorage.setItem('autorActual', autor.value);
+    location.reload();
+});
+
 function cambiarPantalla(nombre) {
     pantalla = nombre;
     localStorage.setItem('pantallaActual', nombre);
+
+    //lo muestra en todos menos en gestor
+    selectorAutor.hidden = (pantalla === "gestor");  
 }
 
 function save() {//guardado del local
@@ -28,7 +45,7 @@ function save() {//guardado del local
 
 
 //llamado de pestana segun el boton
-document.querySelector("button[data-vista = 'gestorTareas']").addEventListener("click", () => { 
+document.querySelector("button[data-vista = 'gestorTareas']").addEventListener("click", () => {
     cambiarPantalla("gestor");
     drawGestor();
 });
@@ -39,6 +56,10 @@ let vista_nuevaAct = document.querySelector("#vista");
 let vistaActividades = document.querySelector("#vistaActividades");
 let vistaLista = document.querySelector("#lista");
 let color = "";
+let ttpendientes = 0;
+let ttproceso = 0;
+let tterminadas = 0;
+
 function drawGestor() {//mostrado de infotmacion
     //formulario
     vista_nuevaAct.innerHTML = `
@@ -69,6 +90,13 @@ function drawGestor() {//mostrado de infotmacion
     </section>
     
     <section class="actividadesRegistradas">
+
+        <div class="resumen">
+            <div class="resumen_apartado"><h3>Totales: <span id="tareasT"></span></h3></div>
+            <div class="resumen_apartado"><h3>Pendientes: <span id="tareasP"></span></h3></div>
+            <div class="resumen_apartado"><h3>Proceso: <span id="tareasEP"></span></h3></div>
+            <div class="resumen_apartado"><h3>Terminadas: <span id="tareasTE"></span></h3></div>
+        </div>
         <h1>Actividades registradas</h1>
         <label for="busqueda">Buscar titulo o materia</label>
         <input id='busqueda' placeholder='Buscar...'>
@@ -97,6 +125,9 @@ function drawGestor() {//mostrado de infotmacion
     //Mostrado
     lista = vista_nuevaAct.querySelector("#lista");
 
+    //id base
+    let id = 1;
+
     vista_nuevaAct.querySelector('#guardarActividad').addEventListener('click', () => {//boton de guardado
         pantalla = 'gestor'
         let titulo = vista.querySelector('#titulo').value.trim();
@@ -118,8 +149,13 @@ function drawGestor() {//mostrado de infotmacion
             mensaje.style.color = "red";
             mensaje.textContent = "Fecha es obligatoria";
         } else {
+
+            //Asignacion de ids para que no falle
+            if (tareas.length === 0) id = 1;
+            else id = Math.max(...tareas.map(a => a.id || 0)) + 1
+
             tareas.push({//asignacion al local
-                id: tareas.length,
+                id: id,
                 titulo,
                 materia,
                 descripcion,
@@ -142,8 +178,25 @@ function drawGestor() {//mostrado de infotmacion
     document.querySelector("#filtroEstado").addEventListener("change", renderLista);
     document.querySelector("#filtroPrioridad").addEventListener("change", renderLista);
 
+    conteo();
     // muestra la lista de inicio
     renderLista();
+}
+
+//Conteo de actividades
+function conteo() {
+    ttpendientes = 0;
+    ttproceso = 0;
+    tterminadas = 0;
+    tareas.forEach(actividad => {
+        if (actividad.estado == "pendiente") ttpendientes++;
+        if (actividad.estado == "proceso") ttproceso++;
+        if (actividad.estado == "terminado") tterminadas++;
+    });
+    document.querySelector("#tareasT").textContent = tareas.length;
+    document.querySelector("#tareasP").textContent = ttpendientes;
+    document.querySelector("#tareasEP").textContent = ttproceso;
+    document.querySelector("#tareasTE").textContent = tterminadas;
 }
 
 function renderLista() {
@@ -229,4 +282,18 @@ function renderLista() {
     });
 }
 
-if(pantalla == "gestor") drawGestor();
+//Mostrado de pantalla al reiniciar
+if (pantalla == "gestor") drawGestor();
+
+// Mostrar u ocultar el select segun la pantalla al iniciar
+selectorAutor.hidden = (pantalla === "gestor");
+
+// Cargar las practicas de la carpeta del autor elegido
+["practica_3", "practica_4", "practica_5", "practica_6", "practica_7",
+ "practica_8", "practica_9", "practica_10", "examen_1", "examen_2"]
+.forEach(nombre => {
+    const s = document.createElement("script");
+    s.src = autor.value + nombre + ".js";
+    s.onerror = () => console.warn("No se pudo cargar " + s.src);
+    document.body.appendChild(s);
+});
