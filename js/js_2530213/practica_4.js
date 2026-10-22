@@ -13,7 +13,7 @@ try {
 }
 
 //guardado del localStorage
-function save() {
+function guardarconsumo() {
     localStorage.setItem("consumoElectrico", JSON.stringify(consumo));
 }
 
@@ -82,7 +82,7 @@ function drawPract4() {
             consumoact: consumonuevo,
             pago: total
         }
-        save(); 
+        guardarconsumo(); 
         mostrar();
     });
 
