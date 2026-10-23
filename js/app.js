@@ -90,10 +90,10 @@ function drawGestor() {//mostrado de infotmacion
 
         <hr>
         <h2>Mis videos</h2>
-        <iframe id="reproductor" src="https://www.youtube.com/embed/ID_VIDEO_1" title="Video de YouTube" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        <iframe id="reproductor" src="https://www.youtube.com/embed/3812rr8Aw8I" title="Video de YouTube" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
         <label for="listaVideos">Elige un video</label>
         <select id="listaVideos">
-            <option value="ID_VIDEO_1">Video 1</option>
+            <option value="3812rr8Aw8I">Formulario Base y sus dibujado de data vista</option>
             <option value="ID_VIDEO_2">Video 2</option>
             <option value="ID_VIDEO_3">Video 3</option>
         </select>
