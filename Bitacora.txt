@@ -1,8 +1,0 @@
-Dia 1:
-Se inicio con el formulario html para la navegación de los formulario principalmente con un navigation con dos botones donde uno de ellos muestra el formulario principal.
-
-Tambien se inicializo el archivo js para la validación de los campos del html que al momento despliega el formulario principal y guarda las actividades en el LocalStorage.
-
-Dia 2:
-Se inicio el diseño de el proyecto en el archivo CSS que fue tomado de referencia de una practica pasada y se empezó a modificar principalmente los colores del fondo principal y los section para que quede lo mas parecido al formulario que se tiene de referencia 
-
