@@ -288,9 +288,13 @@ function renderLista() {
 
         // eliminar tarea
         elemento.querySelector(".eliminar").addEventListener("click", () => {
-            tareas.splice(indiceReal, 1);
-            save();
-            renderLista();
+            const confirmado = confirm(`¿Estás seguro de que deseas eliminar "${tarjeta.titulo}"?`);
+            
+            if (confirmado) {
+                tareas.splice(indiceReal, 1);
+                save();
+                renderLista();
+            }
         });
 
         contenedorLista.appendChild(elemento);
