@@ -6,8 +6,8 @@ Proyecto integrador de la Unidad 2 de **Aplicaciones Web**. Sirve para organizar
 
 | Integrante | Matrícula | Rol |
 |---|---|---|
-| Alfredo Ismael Ramos Zuñiga | 2530213 | A: formulario, validaciones, registro y búsqueda |
-| Eduardo Gael Alonso Lara | 2530433 | B: diseño, eliminación y estadísticas |
+| Alfredo Ismael Ramos Zuñiga | 2530213 | A: formulario, validaciones, registro y guardado en LocalStorage, estadísticas |
+| Eduardo Gael Alonso Lara | 2530433 | B: diseño, eliminación, filtrado por estado y prioridad, busqueda |
 
 ---
 
