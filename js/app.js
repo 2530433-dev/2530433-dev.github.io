@@ -9,7 +9,7 @@ let tareas;
 //     estado: 'pendiente'
 // };
 try {//guardado en local
-    tareas = JSON.parse(localStorage.getItem('tareasGuardadas')) || [];
+    tareas = JSON.parse(localStorage.getItem('actividadesAcademicas')) || [];
 } catch {
     tareas = [];
 }
@@ -39,7 +39,7 @@ function cambiarPantalla(nombre) {
 }
 
 function save() {//guardado del local
-    localStorage.setItem('tareasGuardadas', JSON.stringify(tareas));
+    localStorage.setItem('actividadesAcademicas', JSON.stringify(tareas));
 }
 
 
