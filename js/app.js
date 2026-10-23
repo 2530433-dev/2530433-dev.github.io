@@ -102,6 +102,7 @@ function drawGestor() {//mostrado de infotmacion
             <option value="adI4Iin8qOI">Persistencia entre pantallas</option>
             <option value="ej1OVMp-7qs">Visualizacion de practica segun el autor seleccionado</option>
             <option value="ficf5jcbZFc">Creacion de servidor web</option>
+            <option value="q9vaP931sWY">Prueba de requisitos funcionales</option>
 
         </select>
     </section>
