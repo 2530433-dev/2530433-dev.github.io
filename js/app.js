@@ -94,8 +94,14 @@ function drawGestor() {//mostrado de infotmacion
         <label for="listaVideos">Elige un video</label>
         <select id="listaVideos">
             <option value="3812rr8Aw8I">Formulario Base y sus dibujado de data vista</option>
-            <option value="ID_VIDEO_2">Video 2</option>
-            <option value="ID_VIDEO_3">Video 3</option>
+            <option value="ry8e37qXhjA">Creacion del Css para el estilo visual del proyecto</option>
+            <option value="x9jYLgLjs1M">Guardado en localStorage</option>
+            <option value="igjzulqwfms">Creacion de la lista de proyectos guardados con CRUD y los filtros de busqueda</option>
+            <option value="7j7y-0svYQ4">Conteo/Resumen de actividades</option>
+            <option value="svvUDXgJels">Adaptacion de practicas realizadas</option>
+            <option value="adI4Iin8qOI">Persistencia entre pantallas</option>
+            <option value="ej1OVMp-7qs">Visualizacion de practica segun el autor seleccionado</option>
+            <option value=""></option>
         </select>
     </section>
     
