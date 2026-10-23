@@ -181,6 +181,7 @@ function drawGestor() {//mostrado de infotmacion
                 estado
             });
             save();
+            renderLista();
 
             //reseteo
             vista_nuevaAct.querySelector('#titulo').value = "";
@@ -224,6 +225,7 @@ function conteo() {
 function renderLista() {
     let contenedorLista = document.querySelector("#lista");
     if (!contenedorLista) return;
+    conteo();
     contenedorLista.innerHTML = "";
 
     let busqueda = document.querySelector("#busqueda") ? document.querySelector("#busqueda").value.toLowerCase() : "";
