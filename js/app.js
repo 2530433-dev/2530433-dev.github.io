@@ -93,6 +93,7 @@ function drawGestor() {//mostrado de infotmacion
         <iframe id="reproductor" src="https://www.youtube.com/embed/3812rr8Aw8I" title="Video de YouTube" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
         <label for="listaVideos">Elige un video</label>
         <select id="listaVideos">
+            <option value="3812rr8Aw8I">Formulario Base y sus dibujado de data vista</option>
             <option value="ry8e37qXhjA">Creacion del Css para el estilo visual del proyecto</option>
             <option value="x9jYLgLjs1M">Guardado en localStorage</option>
             <option value="igjzulqwfms">Creacion de la lista de proyectos guardados con CRUD y los filtros de busqueda</option>
